@@ -1,0 +1,10 @@
+CODE SEGMENT
+ASSUME CS:CODE
+START:
+        MOV AL,77H
+        MOV BL,77H
+        ADD CX,AX
+        ADD CX,BX
+        INT 21H
+CODE ENDS
+END START

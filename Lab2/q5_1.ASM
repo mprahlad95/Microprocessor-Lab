@@ -1,0 +1,26 @@
+;Block transfer when not overlapping
+
+DATA SEGMENT
+        ARRAY1 DB 11H, 22H, 33H, 44H, 55H     ;[00],[01],[02],[03],[04]
+        ARRAY2 DB 5 DUP(?)                    ;[05],[06],[07],[08],[09]
+DATA ENDS
+
+CODE SEGMENT
+ASSUME CS:CODE, DS:DATA
+START:
+        MOV AX, DATA
+        MOV DS, AX
+
+        MOV SI, 00H
+
+        MOV CX, 05H
+BACK:   MOV AL, ARRAY1[SI]
+        MOV ARRAY2[SI], AL
+        INC SI
+LOOP BACK
+
+        MOV AH, 4CH
+        INT 21H
+
+CODE ENDS
+END START

@@ -1,0 +1,17 @@
+DATA SEGMENT
+        NUM1 DW 0FF2BH
+        NUM2 DW 0DDF6H
+        SUM DW ?
+DATA ENDS
+
+CODE SEGMENT
+ASSUME CS:CODE, DS:DATA
+START:
+        MOV AX,DATA
+        MOV DS,AX
+        MOV AX,NUM1
+        ADD AX,NUM2
+        MOV SUM,AX
+        CODE ENDS
+END START
+

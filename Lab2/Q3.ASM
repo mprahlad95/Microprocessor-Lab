@@ -1,0 +1,30 @@
+DATA SEGMENT
+        NUM1 DT 11223344556677889911H
+        NUM2 DT 99887766554433221199H
+        SUM DT ?
+DATA ENDS
+
+CODE SEGMENT
+ASSUME CS:CODE, DS:DATA
+START:
+        MOV AX, DATA
+        MOV DS, AX
+
+        MOV SI, 00H
+
+        MOV AX, WORD PTR NUM1[SI]
+        ADD AX, WORD PTR NUM2[SI]
+        MOV WORD PTR SUM[SI], AX
+
+        MOV CX, 04H   ;CX is used as a counter
+  BACK: INC SI
+        INC SI
+        MOV AX, WORD PTR NUM1[SI]
+        ADC AX, WORD PTR NUM2[SI]
+        MOV WORD PTR SUM[SI], AX
+        LOOP BACK
+
+        INT 21H
+
+CODE ENDS
+END START
